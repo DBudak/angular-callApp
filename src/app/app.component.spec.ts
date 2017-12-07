@@ -1,5 +1,6 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { By } from '@angular/platform-browser';
 
@@ -12,7 +13,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ContactsComponent
+        ContactsComponent,
+        AddContactComponent
       ],
     }).compileComponents();
     

@@ -12,4 +12,8 @@ export class ContactsService {
   getContacts():Observable<Contact[]> {
     return of(CONTACTS);
   }
+
+  addContact(newContact:Contact):void{
+    CONTACTS.push(newContact);
+  }
 }

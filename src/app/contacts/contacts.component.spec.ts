@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactsComponent } from './contacts.component';
-import { ContactsService } from './contacts.service';
-import { Contact } from './contact.model';
+import { ContactsService } from '../shared/contacts.service';
+import { Contact } from '../shared/contact.model';
 import { Observable } from 'rxjs/Observable';
+import { AddContactComponent } from '../add-contact/add-contact.component';
 
 describe('ContactsComponent', () => {
   let component: ContactsComponent;
@@ -13,7 +14,8 @@ describe('ContactsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ContactsComponent ],
+      declarations: [ ContactsComponent,
+      AddContactComponent ],
       providers: [ ContactsService ]
     });
 
