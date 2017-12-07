@@ -9,8 +9,6 @@ describe('ContactsComponent', () => {
   let component: ContactsComponent;
   let fixture: ComponentFixture<ContactsComponent>;
   let template;
-  let spy;
-  let contactsServiceMock: Contact[];
   let contactsService: ContactsService;
 
   beforeEach(async(() => {
@@ -27,13 +25,7 @@ describe('ContactsComponent', () => {
     component = fixture.componentInstance;
     template = fixture.debugElement.nativeElement;
     contactsService = fixture.debugElement.injector.get(ContactsService);
-    contactsServiceMock = [
-      { name: 'Me', phoneNumber: '212-768-0897'},
-      { name: 'Mom', phoneNumber: '212-908-0989'},
-      { name: 'Dad', phoneNumber: '212-212-2121'}      
-    ];
-    spy = spyOn(contactsService, 'getContacts')
-      .and.returnValue(Observable.create(()=> contactsServiceMock));
+
   });
   //Component Tests
   it('should create component', () => {
@@ -47,10 +39,15 @@ describe('ContactsComponent', () => {
     expect(template.querySelector('li')).toBeNull();
   })
   //Template Tests
-  it('should have a list of contacts', () => {
+  it('should have a list of contacts', async(() => {
     fixture.detectChanges();
-    expect(template.querySelector('li')).toBeTruthy();
-  })
+    fixture.whenStable().then(() => {
+      fixture.detectChanges();
+      expect(component.contacts).toBeDefined();
+      expect(template.querySelector('li')).toBeTruthy();
+    })
+
+  }));
   it('should have contacts in template', () => {
     fixture.detectChanges();
     expect(template.querySelector('li').textContent).toContain('Me');
